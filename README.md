@@ -14,7 +14,7 @@ Instalasi dan Konfigurasi
 
 Kustomisasi
 --------
-Tampilan saat konfirmasi dan pemilihan bank masih standar, jika akan disesuaikan dengan theme yang Anda gunakan silahkan override file .tpl terkait, sebagai referensi cara overide file modul silahkan baca [Override default behaviour][1]
+Tampilan saat konfirmasi dan pemilihan bank masih standar, jika akan disesuaikan dengan theme yang Anda gunakan silahkan override file .tpl terkait, sebagai referensi cara override file modul silahkan baca [Override default behaviour][1]
 
 
 [1]: http://doc.prestashop.com/display/PS16/Overriding+default+behaviors
