@@ -35,7 +35,7 @@ $_MODULE['<{bankbca}prestashop>payment_execution_036dd8940c59eeb53396b5259bf8901
 $_MODULE['<{bankbca}prestashop>payment_execution_edd87c9059d88fea45c0bd6384ce92b9'] = 'Konfirmasi pembelian Anda dengan klik pada tombol \"Konfirmasi pembelian\".';
 $_MODULE['<{bankbca}prestashop>payment_execution_46b9e3665f187c739c55983f757ccda0'] = 'Konfirmasi pembelian';
 $_MODULE['<{bankbca}prestashop>payment_execution_569fd05bdafa1712c4f6be5b153b8418'] = 'Cara pembayaran lainnya';
-$_MODULE['<{bankbca}prestashop>infos_29a24b9962d1619dcd9785dcab849118'] = 'Modul untuk menerima pembayaranran melalui Bank BCA.';
+$_MODULE['<{bankbca}prestashop>infos_29a24b9962d1619dcd9785dcab849118'] = 'Modul untuk menerima pembayaran melalui Bank BCA.';
 $_MODULE['<{bankbca}prestashop>infos_9073a5b16843e2fb33691eff99bc1a01'] = 'Jika pelanggan memilih membayar menggunakan Bank BCA, status pembelian akan berubah menjadi \'Menunggu pembayaran via Bank BCA\'';
 $_MODULE['<{bankbca}prestashop>infos_bca20059152ec12a323539edf6b86745'] = 'Dan jika pembayaran telah diterima, konfirmasi pembayaran harus dilakukan secara manual.';
 $_MODULE['<{bankbca}prestashop>payment_013d1c2fdb46f6edcc00e50d076604d0'] = 'Bayar melalui Bank BCA';
