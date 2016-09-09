@@ -1,6 +1,6 @@
 Bank BCA
 --------
-Modul pembayaran Bank BCA untuk PrestaShop 1.6.x
+Modul pembayaran Bank BCA untuk PrestaShop 1.6.x (branch: 1.6) dan PrestaShop 1.7.x (branch: master)
 
 Modul ini dibuat berdasarkan modul BankWire. Versi/perubahan akan selalu mengikuti modul tersebut.
 
