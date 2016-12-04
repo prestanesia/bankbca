@@ -25,7 +25,7 @@
 
 <p class="payment_module">
 	<a href="{$link->getModuleLink('bankbca', 'payment')|escape:'html'}" title="{l s='Pay by Bank BCA' d='Modules.BankBCA.Shop'}">
-		<img src="{$this_path_bw}bankwire.jpg" alt="{l s='Pay by Bank BCA' d='Modules.BankBCA.Shop'}"/>
+		<img src="{$this_path_bw}logo.png" alt="{l s='Pay by Bank BCA' d='Modules.BankBCA.Shop'}"/>
 		{l s='Pay by Bank BCA' d='Modules.BankBCA.Shop'}&nbsp;<span>{l s='(order processing will be longer)' d='Modules.BankBCA.Shop'}</span>
 	</a>
 </p>

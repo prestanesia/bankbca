@@ -24,7 +24,7 @@
 *}
 
 <div class="alert alert-info">
-<img src="../modules/bankbca/bankwire.jpg" style="float:left; margin-right:15px;" >
+<img src="../modules/bankbca/logo.png" style="float:left; margin-right:15px;" height="60">
 <p><strong>{l s="This module allows you to accept secure payments by Bank BCA." d='Modules.BankBCA.Admin'}</strong></p>
 <p>{l s="If the client chooses to pay by Bank BCA, the order's status will change to 'Waiting for Payment.'" d='Modules.BankBCA.Admin'}</p>
 <p>{l s="That said, you must manually confirm the order upon receiving the Bank BCA." d='Modules.BankBCA.Admin'}</p>

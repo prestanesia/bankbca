@@ -25,8 +25,8 @@
 
 <section>
   <p>
-    {l s='Transfer the total amount to our bank account. You\'ll receive details about our bank account once the order is confirmed.' mod='bankbca'}
-    {l s='Goods will be reserved %d days for you and we\'ll process the order immediately after receiving the payment.'|sprintf:$bankbcaReservationDays mod='bankbca'}
+    {l s='Please transfer the invoice amount to our bank account. You will receive our order confirmation per email containing bank details and order number.' mod='ps_wirepaymentbankbca'}
+    {l s='Goods will be reserved %s days for you and we\'ll process the order immediately after receiving the payment.' sprintf=[$bankwireReservationDays] mod='bankbca'}
     {if $bankbcaCustomText }
         <a data-toggle="modal" data-target="#bankbca-modal">{l s='More information' mod='bankbca'}</a>
     {/if}
@@ -42,7 +42,7 @@
           <h2>{l s='Bank BCA' mod='bankbca'}</h2>
         </div>
         <div class="modal-body">
-          <p>{l s='Payment is made by transfert of the invoice amount to the following account:' mod='bankbca'}</p>
+          <p>{l s='Payment is made by transfer of the invoice amount to the following account:' mod='bankbca'}</p>
           {include file='module:bankbca/views/templates/hook/_partials/payment_infos.tpl'}
           {$bankbcaCustomText nofilter}
         </div>

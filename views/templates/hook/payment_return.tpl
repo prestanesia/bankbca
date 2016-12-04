@@ -26,7 +26,7 @@
 {if $status == 'ok'}
     <p>
       {l s='Your order on %s is complete.' sprintf=[$shop_name] mod='bankbca'}<br/>
-      {l s='Please send us a Bank BCA with:' mod='bankbca'}
+      {l s='Please send us payment via Bank BCA with:' mod='bankbca'}
     </p>
     {include file='module:bankbca/views/templates/hook/_partials/payment_infos.tpl'}
 

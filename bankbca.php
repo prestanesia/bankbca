@@ -44,7 +44,7 @@ class BankBCA extends PaymentModule
     {
         $this->name = 'bankbca';
         $this->tab = 'payments_gateways';
-        $this->version = '1.0.0';
+        $this->version = '1.0.8';
         $this->ps_versions_compliancy = array('min' => '1.7', 'max' => _PS_VERSION_);
         $this->author = 'Prestanesia';
         $this->controllers = array('payment', 'validation');
@@ -70,15 +70,15 @@ class BankBCA extends PaymentModule
         $this->bootstrap = true;
         parent::__construct();
 
-        $this->displayName = $this->getTranslator()->trans('Bank BCA', array(), 'ModulesBankBCA.Admin');
-        $this->description = $this->getTranslator()->trans('Accept payments for your products via Bank BCA transfer.', array(), 'ModulesBankBCA.Admin');
-        $this->confirmUninstall = $this->getTranslator()->trans('Are you sure about removing these details?', array(), 'ModulesBankBCA.Admin');
+        $this->displayName = $this->trans('Bank BCA', array(), 'Modules.BankBCA.Admin');
+        $this->description = $this->trans('Accept payments for your products via Bank BCA transfer.', array(), 'Modules.BankBCA.Admin');
+        $this->confirmUninstall = $this->trans('Are you sure about removing these details?', array(), 'Modules.BankBCA.Admin');
 
         if (!isset($this->owner) || !isset($this->details) || !isset($this->address)) {
-            $this->warning = $this->getTranslator()->trans('Account owner and account details must be configured before using this module.', array(), 'ModulesBankBCA.Admin');
+            $this->warning = $this->trans('Account owner and account details must be configured before using this module.', array(), 'Modules.BankBCA.Admin');
         }
         if (!count(Currency::checkPaymentCurrencies($this->id))) {
-            $this->warning = $this->getTranslator()->trans('No currency has been set for this module.', array(), 'ModulesBankBCA.Admin');
+            $this->warning = $this->trans('No currency has been set for this module.', array(), 'Modules.BankBCA.Admin');
         }
 
         $this->extra_mail_vars = array(
@@ -161,9 +161,9 @@ class BankBCA extends PaymentModule
     {
         if (Tools::isSubmit('btnSubmit')) {
             if (!Tools::getValue('BANK_BCA_DETAILS')) {
-                $this->_postErrors[] = $this->getTranslator()->trans('Account details are required.', array(), 'ModulesBankBCA.Admin');
+                $this->_postErrors[] = $this->trans('Account details are required.', array(), 'Modules.BankBCA.Admin');
             } elseif (!Tools::getValue('BANK_BCA_OWNER')) {
-                $this->_postErrors[] = $this->getTranslator()->trans('Account owner is required.', array(), "ModulesBankBCA.Admin");
+                $this->_postErrors[] = $this->trans('Account owner is required.', array(), "Modules.BankBCA.Admin");
             }
         }
     }
@@ -185,7 +185,7 @@ class BankBCA extends PaymentModule
             Configuration::updateValue('BANK_BCA_RESERVATION_DAYS', Tools::getValue('BANK_BCA_RESERVATION_DAYS'));
             Configuration::updateValue('BANK_BCA_CUSTOM_TEXT', $custom_text);
         }
-        $this->_html .= $this->displayConfirmation($this->getTranslator()->trans('Settings updated', array(), 'Admin.Global'));
+        $this->_html .= $this->displayConfirmation($this->trans('Settings updated', array(), 'Admin.Global'));
     }
 
     private function _displayBankBCA()
@@ -229,7 +229,7 @@ class BankBCA extends PaymentModule
         );
 
         $newOption = new PaymentOption();
-        $newOption->setCallToActionText($this->getTranslator()->trans('Pay by Bank BCA', array(), 'ModulesBankBCA.Shop'))
+        $newOption->setCallToActionText($this->trans('Pay by Bank BCA', array(), 'Modules.BankBCA.Shop'))
                       ->setAction($this->context->link->getModuleLink($this->name, 'validation', array(), true))
                       ->setAdditionalInformation($this->context->smarty->fetch('module:bankbca/views/templates/hook/intro.tpl'));
         $payment_options = [
@@ -246,14 +246,13 @@ class BankBCA extends PaymentModule
         }
 
         $state = $params['order']->getCurrentState();
-        if (
-            in_array(
-                $state,
-                array(
-                    Configuration::get('PS_OS_BANKBCA'),
-                    Configuration::get('PS_OS_OUTOFSTOCK'),
-                    Configuration::get('PS_OS_OUTOFSTOCK_UNPAID'),
-                )
+        if (in_array(
+            $state,
+            array(
+                Configuration::get('PS_OS_BANKBCA'),
+                Configuration::get('PS_OS_OUTOFSTOCK'),
+                Configuration::get('PS_OS_OUTOFSTOCK_UNPAID'),
+            )
         )) {
             $bankbcaOwner = $this->owner;
             if (!$bankbcaOwner) {
@@ -285,10 +284,15 @@ class BankBCA extends PaymentModule
                 'contact_url' => $this->context->link->getPageLink('contact', true)
             ));
         } else {
-            $this->smarty->assign('status', 'failed');
+            $this->smarty->assign(
+                array(
+                    'status' => 'failed',
+                    'contact_url' => $this->context->link->getPageLink('contact', true),
+                )
+            );
         }
 
-        return $this->display(__FILE__, 'payment_return.tpl');
+        return $this->fetch('module:bankbca/views/templates/hook/payment_return.tpl');
     }
 
     public function checkCurrency($cart)
@@ -311,58 +315,58 @@ class BankBCA extends PaymentModule
         $fields_form = array(
             'form' => array(
                 'legend' => array(
-                    'title' => $this->getTranslator()->trans('Contact details', array(), 'ModulesBankBCA.Admin'),
+                    'title' => $this->trans('Contact details', array(), 'Modules.BankBCA.Admin'),
                     'icon' => 'icon-envelope'
                 ),
                 'input' => array(
                     array(
                         'type' => 'text',
-                        'label' => $this->getTranslator()->trans('Account owner', array(), 'ModulesBankBCA.Admin'),
+                        'label' => $this->trans('Account owner', array(), 'Modules.BankBCA.Admin'),
                         'name' => 'BANK_BCA_OWNER',
                         'required' => true
                     ),
                     array(
                         'type' => 'textarea',
-                        'label' => $this->getTranslator()->trans('Details', array(), 'ModulesBankBCA.Admin'),
+                        'label' => $this->trans('Details', array(), 'Modules.BankBCA.Admin'),
                         'name' => 'BANK_BCA_DETAILS',
-                        'desc' => $this->getTranslator()->trans('Such as bank branch, IBAN number, BIC, etc.', array(), 'ModulesBankBCA.Admin'),
+                        'desc' => $this->trans('Such as bank branch, IBAN number, BIC, etc.', array(), 'Modules.BankBCA.Admin'),
                         'required' => true
                     ),
                     array(
                         'type' => 'textarea',
-                        'label' => $this->getTranslator()->trans('Bank address', array(), 'ModulesBankBCA.Admin'),
+                        'label' => $this->trans('Bank address', array(), 'Modules.BankBCA.Admin'),
                         'name' => 'BANK_BCA_ADDRESS',
                         'required' => true
                     ),
                 ),
                 'submit' => array(
-                    'title' => $this->getTranslator()->trans('Save', array(), 'Admin.Actions'),
+                    'title' => $this->trans('Save', array(), 'Admin.Actions'),
                 )
             ),
         );
         $fields_form_customization = array(
             'form' => array(
                 'legend' => array(
-                    'title' => $this->l('Customization'),
+                    'title' => $this->trans('Customization', array(), 'Modules.WirePayment.Admin'),
                     'icon' => 'icon-cogs'
                 ),
                 'input' => array(
                     array(
                         'type' => 'text',
-                        'label' => $this->l('Reservation delay'),
-                        'desc' => $this->l('Number of days the goods will be reserved'),
+                        'label' => $this->trans('Reservation delay', array(), 'Modules.WirePayment.Admin'),
+                        'desc' => $this->trans('Number of days the goods will be reserved', array(), 'Modules.WirePayment.Admin'),
                         'name' => 'BANK_BCA_RESERVATION_DAYS',
                     ),
                     array(
                         'type' => 'textarea',
-                        'label' => $this->l('Information to the customer'),
+                        'label' => $this->trans('Information to the customer', array(), 'Modules.WirePayment.Admin'),
                         'name' => 'BANK_BCA_CUSTOM_TEXT',
-                        'desc' => $this->l('Information about the bankbca (processing time, starting of the shipping...)'),
+                        'desc' => $this->trans('Information about Bank BCA (processing time, starting of the shipping...)', array(), 'Modules.WirePayment.Admin'),
                         'lang' => true
                     ),
                 ),
                 'submit' => array(
-                    'title' => $this->l('Save'),
+                    'title' => $this->trans('Save'),
                 )
             ),
         );
@@ -413,7 +417,7 @@ class BankBCA extends PaymentModule
     {
         $cart = $this->context->cart;
         $total = sprintf(
-            $this->getTranslator()->trans('%1$s (tax incl.)', array(), 'ModulesBankBCA.Shop'),
+            $this->trans('%1$s (tax incl.)', array(), 'Modules.BankBCA.Shop'),
             Tools::displayPrice($cart->getOrderTotal(true, Cart::BOTH))
         );
 
