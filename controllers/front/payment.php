@@ -30,8 +30,7 @@
 class BankbcaPaymentModuleFrontController extends ModuleFrontController
 {
     public $ssl = true;
-    public $display_column_left = false;
-
+	
     /**
      * @see FrontController::initContent()
      */

@@ -2,7 +2,7 @@
 <module>
     <name>bankbca</name>
     <displayName><![CDATA[Bank BCA]]></displayName>
-    <version><![CDATA[1.0.8]]></version>
+    <version><![CDATA[2.0.4]]></version>
     <description><![CDATA[Accept payments for your products via Bank BCA transfer.]]></description>
     <author><![CDATA[Prestanesia]]></author>
     <tab><![CDATA[payments_gateways]]></tab>

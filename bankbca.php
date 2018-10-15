@@ -44,7 +44,7 @@ class BankBCA extends PaymentModule
     {
         $this->name = 'bankbca';
         $this->tab = 'payments_gateways';
-        $this->version = '1.0.8';
+        $this->version = '2.0.4';
         $this->ps_versions_compliancy = array('min' => '1.7', 'max' => _PS_VERSION_);
         $this->author = 'Prestanesia';
         $this->controllers = array('payment', 'validation');
@@ -224,14 +224,17 @@ class BankBCA extends PaymentModule
             return;
         }
 
-        $this->context->smarty->assign(
+        $this->smarty->assign(
             $this->getTemplateVarInfos()
         );
 
         $newOption = new PaymentOption();
-        $newOption->setCallToActionText($this->trans('Pay by Bank BCA', array(), 'Modules.BankBCA.Shop'))
-                      ->setAction($this->context->link->getModuleLink($this->name, 'validation', array(), true))
-                      ->setAdditionalInformation($this->context->smarty->fetch('module:bankbca/views/templates/hook/intro.tpl'));
+
+        $newOption->setModuleName($this->name)
+                ->setCallToActionText($this->trans('Pay by Bank BCA', array(), 'Modules.BankBCA.Shop'))
+                ->setAction($this->context->link->getModuleLink($this->name, 'validation', array(), true))
+                ->setAdditionalInformation($this->fetch('module:bankbca/views/templates/hook/intro.tpl'));
+
         $payment_options = [
             $newOption,
         ];
@@ -315,7 +318,7 @@ class BankBCA extends PaymentModule
         $fields_form = array(
             'form' => array(
                 'legend' => array(
-                    'title' => $this->trans('Contact details', array(), 'Modules.BankBCA.Admin'),
+                    'title' => $this->trans('Account details', array(), 'Modules.BankBCA.Admin'),
                     'icon' => 'icon-envelope'
                 ),
                 'input' => array(
@@ -327,7 +330,7 @@ class BankBCA extends PaymentModule
                     ),
                     array(
                         'type' => 'textarea',
-                        'label' => $this->trans('Details', array(), 'Modules.BankBCA.Admin'),
+                        'label' => $this->trans('Account details', array(), 'Modules.BankBCA.Admin'),
                         'name' => 'BANK_BCA_DETAILS',
                         'desc' => $this->trans('Such as bank branch, IBAN number, BIC, etc.', array(), 'Modules.BankBCA.Admin'),
                         'required' => true
