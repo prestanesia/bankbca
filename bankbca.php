@@ -94,7 +94,6 @@ class BankBCA extends PaymentModule
             return false;
         }
 
-        // TODO : Cek insert new state, Custom CSS
         $newState = new OrderState();
         
         $newState->send_email = true;
@@ -229,7 +228,6 @@ class BankBCA extends PaymentModule
         );
 
         $newOption = new PaymentOption();
-
         $newOption->setModuleName($this->name)
                 ->setCallToActionText($this->trans('Pay by Bank BCA', array(), 'Modules.BankBCA.Shop'))
                 ->setAction($this->context->link->getModuleLink($this->name, 'validation', array(), true))
